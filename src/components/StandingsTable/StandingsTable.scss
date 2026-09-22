@@ -1,0 +1,75 @@
+.standings {
+  overflow: auto;
+  max-height: 100vh;
+
+  &__table {
+    // The table is at least as wide as the scroll container. With 11 columns
+    // it gets wider than the container, which is what scrolls horizontally.
+    min-width: 100%;
+    table-layout: fixed;
+    text-align: center;
+  }
+
+  &__table :is(th, td):nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    min-width: var(--first-column-width);
+    max-width: var(--first-column-width);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__table :is(th, td):nth-child(2) {
+    position: sticky;
+    left: var(--first-column-width);
+    z-index: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    border-right: 5px solid var(--color-border);
+  }
+
+  &__cell {
+    align-content: end;
+    padding: 3px;
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    white-space: nowrap;
+    min-width: var(--stat-column-width);
+    font-weight: 400;
+
+    &--leader {
+      background-color: var(--color-leader);
+    }
+
+    &--dropped {
+      background-color: var(--color-dropped);
+    }
+
+    &--bold {
+      font-weight: 700;
+    }
+  }
+
+  &__header-cell {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    min-width: var(--stat-column-width);
+    height: var(--table-header-height);
+    border-bottom: 5px solid var(--color-border);
+  }
+
+  &__last-five {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  thead :is(th, td):nth-child(1),
+  thead :is(th, td):nth-child(2) {
+    z-index: 4;
+  }
+}
